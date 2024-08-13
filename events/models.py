@@ -1,6 +1,7 @@
 from django.db import models
 
 
+
 class Amenities(models.Model):
     name = models.CharField(max_length=128)
 
@@ -9,10 +10,11 @@ class Amenities(models.Model):
 
 
 class Movie(models.Model):
-    movie_name = models.CharField(max_length=128)
-    movie_description = models.TextField()
-    movie_image = models.CharField(max_length=500)
-    movie_rating = models.IntegerField(default=0)
+    name = models.CharField(max_length=128)
+    description = models.TextField()
+    image = models.CharField(max_length=500)
+    rating = models.IntegerField(default=0)
+    genre = models.CharField(max_length=128)
     price = models.IntegerField()
     amenities = models.ManyToManyField(Amenities)
 
@@ -21,10 +23,10 @@ class Movie(models.Model):
 
 
 class User(models.Model):
-    user_name = models.CharField(max_length=128)
-    user_password = models.CharField(max_length=128)
-    user_email = models.CharField(max_length=128)
-    user_birthday = models.DateField()
+    name = models.CharField(max_length=128)
+    password = models.CharField(max_length=128)
+    email = models.CharField(max_length=128)
+    birthday = models.DateField()
 
     def __str__(self):
         return self.user_name
