@@ -79,10 +79,10 @@ WSGI_APPLICATION = 'film_point.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': config('DB_ENGINE'),
-        'NAME': 'film-point',
+        'NAME': config('DB_NAME'),
         'USER': config('DB_USER'),
         'PASSWORD': config('DB_PASSWORD'),
-        'HOST':'localhost',
+        'HOST': config('DB_HOST'),
         'PORT': config('DB_PORT'),
     }
     # 'default': {
