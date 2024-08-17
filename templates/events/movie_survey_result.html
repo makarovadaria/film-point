@@ -10,27 +10,94 @@
 </html><!DOCTYPE html>
 <html lang="en">
 <head>
+    {% load static %}
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movie Recommendation Survey 3</title>
-    <link rel="stylesheet" href="styles_filmpoint.css">
+    <link rel="stylesheet" href="{% static 'film-point/styles_filmpoint.css' %}">
     <script src="scripts_filmpoint.js"></script>
+
+    <style>
+        .movie-container {
+            border: 1px solid #ddd;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+
+        .movie-header {
+            display: flex;
+            flex-direction: column; /* Stack year on top of title */
+            align-items: flex-start;
+            margin-bottom: 10px;
+        }
+
+        .movie-year {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #555; /* Slightly darker color for year */
+        }
+
+        .movie-title {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        .movie-content {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .movie-image {
+            max-width: 150px;
+            margin-right: 20px;
+        }
+
+        .movie-description {
+            margin-top: 10px;
+        }
+
+        .movie-genre {
+            margin-top: 10px;
+            font-style: italic;
+            color: #888;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Bravo, <br>Movie Maestro!🍿 <br> Check out these awesome movie picks for tonight. </h1><br>
-    
-    <!-- Recommendations block -->
-    <div id="recommendations">
-        <h2>element with Movie Recommendations "movie_list" comes here</h2>
-        <div id="movie-list"></div>
-    </div>
+<h1>Bravo, <br>Movie Maestro!🍿 <br> Check out these awesome movie picks for tonight. </h1><br>
 
+<!-- Recommendations block -->
 
-    <div class="logo-container">
-            <img src="img_filmpoint/TMDB_logo.svg" alt="TMDB Logo" class="tmdb-logo">
+{% for movie in movie_list %}
+    <div class="movie-container">
+        <div class="movie-header">
+            <div class="movie-rating">Rating: {{ movie.rating }}</div>
         </div>
+        <div class="movie-content">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
+            <div class="movie-details">
+                <div class="movie-year">{{ movie.year }}</div> <!-- Year on top -->
+                <h2 class="movie-title">{{ movie.name }}</h2> <!-- Title below year -->
+            </div>
+        </div>
+        <div class="movie-description">
+            <p>{{ movie.description }}</p>
+        </div>
+        <div class="movie-genre">Genres: {{ movie.genre }}</div>
     </div>
+
+{% endfor %}
+
+
+<div class="logo-container">
+    <img src="img_filmpoint/TMDB_logo.svg" alt="TMDB Logo" class="tmdb-logo">
+</div>
+</div>
 
 </body>
 </html>

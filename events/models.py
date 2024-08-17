@@ -12,10 +12,10 @@ class Amenities(models.Model):
 class Movie(models.Model):
     name = models.CharField(max_length=128)
     description = models.TextField()
+    year = models.TextField()
     image = models.CharField(max_length=500)
     rating = models.IntegerField(default=0)
-    genre = models.CharField(max_length=128)
-    price = models.IntegerField()
+    genre = models.CharField(max_length=250)
     amenities = models.ManyToManyField(Amenities)
 
     def __str__(self):
@@ -31,18 +31,6 @@ class User(models.Model):
     def __str__(self):
         return self.user_name
 
-
-class Rating(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
-    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
-    rating = models.IntegerField()
-
-    def __init__(self, *args, **kwargs):
-        super().__init__(args, kwargs)
-        self.movie_name = None
-
-    def __str__(self):
-        return self.movie_name
 
 
 class Review(models.Model):
