@@ -1,15 +1,18 @@
-import random
-
+import random, requests # For making requests to TMDB
 from events.api import get_film_list_by_filter, get_film_list_mock
-from .models import Movie
-from django.shortcuts import render
-
-# Marianna: With changes will rather be:
-from django.shortcuts import render, redirect
-from .forms import GenreForm, ReleaseDate, MovieRegion
 from .models import UserAnswer, Movie
-import requests
+from .forms import GenreForm, ReleaseDate, MovieRegion
 
+from django.shortcuts import redirect, render
+
+def get_movies(genre, year, region):
+    url = f'https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&with_genres={genre}&primary_release_date.gte={year}-01-01&primary_release_date.lte={year}-12-31&with_original_language={region}'
+    response = requests.get(url)
+    if response.status_code == 200:
+        data = response.json()
+        return data['results']
+    else:
+        return [] # Handle error
 def survey1(request):
     if request.method == 'POST':
         form = GenreForm(request.POST)
