@@ -1,9 +1,9 @@
-import random, requests # For making requests to TMDB
-from events.api import get_film_list_by_filter, get_film_list_mock
+import requests
+from events.api import get_film_list_by_filter
 from .models import UserAnswer, Movie
 from .forms import GenreForm, ReleaseDate, MovieRegion
-
 from django.shortcuts import redirect, render
+
 
 def get_movies(genre, year, region):
     url = f'https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&with_genres={genre}&primary_release_date.gte={year}-01-01&primary_release_date.lte={year}-12-31&with_original_language={region}'
@@ -12,7 +12,9 @@ def get_movies(genre, year, region):
         data = response.json()
         return data['results']
     else:
-        return [] # Handle error
+        return []  # Handle error
+
+
 def survey1(request):
     if request.method == 'POST':
         form = GenreForm(request.POST)
@@ -27,7 +29,8 @@ def survey1(request):
             return redirect('survey2')
     else:
         form = GenreForm()
-    return render(request, 'movie_survey1.html', {'form': form})
+    return render(request, 'events/movie_survey2.html', {'form': form})
+
 
 def survey2(request):
     if request.method == 'POST':
@@ -43,7 +46,8 @@ def survey2(request):
             return redirect('survey3')
     else:
         form = ReleaseDate()
-    return render(request, 'movie_survey2.html', {'form': form})
+    return render(request, 'events/movie_survey3.html', {'form': form})
+
 
 def survey3(request):
     if request.method == 'POST':
@@ -56,43 +60,54 @@ def survey3(request):
                 answer=form.cleaned_data['region']
             )
             user_answer.save()
-            return redirect('survey_result')
+            return redirect('get_movies')
     else:
         form = MovieRegion()
-    return render(request, 'movie_survey3.html', {'form': form})
+    return render(request, 'events/movie_survey_result.html', {'form': form})
+
+
 # Similar views for survey3
 
 filter = {}
+
+
 def index(request):
     return render(request, 'events/index.html')
-def survey(request):
 
+
+def survey(request):
     return render(request, 'events/movie_survey1.html')
+
+
 def survey_genre(request):
     genre = request.GET.get('genres')
     filter["genre"] = genre
 
     return render(request, 'events/movie_survey2.html')
+
+
 def survey_year(request):
     years = request.GET.get('years')
     filter["years"] = years
     return render(request, 'events/movie_survey3.html')
-def survey_region(request):
-    # region = request.GET.get('region')
-    # filter["region"] = region
-    #
-    # years_str = filter.get("years", "")
-    # if '-' in years_str:
-    #     start_year, end_year = map(str, years_str.split('-'))
-    #     filter["release_date_gte"] = start_year + "-01-01"
-    #     filter["release_date_lte"] = end_year + "-12-31"
-    #
-    # if len(filter) < 4:
-    #     return render(request, 'events/index.html')
-    #
-    # movie_list = get_film_list_by_filter(filter)
-    movie_list = get_film_list_mock(filter)
-    return render(request, 'events/movie_survey_result.html', {'movie_list': movie_list})
+
+
+# def survey_region(request):
+#     # region = request.GET.get('region')
+#     # filter["region"] = region
+#     #
+#     # years_str = filter.get("years", "")
+#     # if '-' in years_str:
+#     #     start_year, end_year = map(str, years_str.split('-'))
+#     #     filter["release_date_gte"] = start_year + "-01-01"
+#     #     filter["release_date_lte"] = end_year + "-12-31"
+#     #
+#     # if len(filter) < 4:
+#     #     return render(request, 'events/index.html')
+#     #
+#     # movie_list = get_film_list_by_filter(filter)
+#     movie_list = get_film_list_mock(filter)
+#     return render(request, 'events/movie_survey_result.html', {'movie_list': movie_list})
 
 def recommendation(request):
     return render(request, 'events/recommendation.html')
@@ -117,8 +132,6 @@ def recommendation(request):
 
 
 def get_recommendations(request):
-
-
     # movie = get_object_or_404(id=movie_name)
     # recommended_movies = Movie.objects.filter(genre=movie.genre).exclude(id=movie.name)
 

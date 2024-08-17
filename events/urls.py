@@ -20,10 +20,10 @@ from events import views
 
 urlpatterns = [
     path('', views.index, name='index'),
-    path('test/survey1/', views.survey, name='survey'),
-    path('test/survey2/', views.survey_genre, name='survey_genre'),
-    path('test/survey3/', views.survey_year, name='survey_year'),
-    path('test/result/', views.survey_region, name='survey_region'),
+    path('test/survey1/', views.survey1, name='survey1'),
+    path('test/survey2/', views.survey2, name='survey2'),
+    path('test/survey3/', views.survey3, name='survey3'),
+    path('test/result/', views.get_movies, name='get_movies'),
     # path('survey/', views.survey, name='survey'),
     # path('get_result/', views.get_result, name='get_result'),
     path('get_recommendations/', views.get_recommendations, name='get_recommendations'),

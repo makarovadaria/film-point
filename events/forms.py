@@ -1,6 +1,7 @@
 from django import forms
 
 
+
 class GenreForm(forms.Form):
     genre = forms.ChoiceField(choices=[
         ('action', 'Action - Spicy and thrilling!'),
