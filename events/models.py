@@ -4,7 +4,7 @@ class UserAnswer(models.Model):
     user_id = models.CharField(max_length=100)  # Replace with appropriate user identification
     question_type = models.CharField(max_length=50)
     answer = models.CharField(max_length=255)
-    timestamp = models.DateTimeField(auto_now_add=True)
+    # timestamp = models.DateTimeField(auto_now_add=True)
 
 class MoviePreference(models.Model):
     user_id = models.CharField(max_length=100)
