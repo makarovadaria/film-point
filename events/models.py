@@ -1,6 +1,16 @@
 from django.db import models
 
+class UserAnswer(models.Model):
+    user_id = models.CharField(max_length=100)  # Replace with appropriate user identification
+    question_type = models.CharField(max_length=50)
+    answer = models.CharField(max_length=255)
+    timestamp = models.DateTimeField(auto_now_add=True)
 
+class MoviePreference(models.Model):
+    user_id = models.CharField(max_length=100)
+    genre = models.CharField(max_length=50)
+    year_range = models.CharField(max_length=50)
+    region = models.CharField(max_length=50)
 
 class Amenities(models.Model):
     name = models.CharField(max_length=128)
