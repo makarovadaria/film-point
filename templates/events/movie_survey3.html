@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     {% load static %}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Movie Recommendation Survey 3</title>
+    <link rel="stylesheet" href="{% static 'film-point/styles_filmpoint.css' %}">
+    <script src="scripts_filmpoint.js"></script>
+
+</head>
+<body>
+
+    <div class="container" id="movie_survey2">
+        <h1>Which film industry produces your favorite cinematic gems?</h1>
+        <div class="btn-group">
+            <button class="button-53" role="button" onclick="location.href='/test/result?region=us'">Hollywood and its many USA buddies</button>
+            <button class="button-53" role="button" onclick="location.href='/test/result?region=india'">Bollywood (India)</button>
+            <button class="button-53" role="button" onclick="location.href='/test/result?region=europe'">European Studios</button>
+            <button class="button-53" role="button" onclick="location.href='/test/result?region=asia'">Asian Studios (excluding Bollywood)</button>
+            <button class="button-53" role="button" onclick="location.href='/test/result?region=latam'">Latin American Studios</button>
+            <button class="button-53" role="button" onclick="location.href='/test/result?region=none'">I don’t care, as long as it’s good!</button>
+        </div>
+    </div>
+
+
+
+        <div class="logo-container">
+            <img src="img_filmpoint/TMDB_logo.svg" alt="TMDB Logo" class="tmdb-logo">
+        </div>
+    </div>
+
+</body>
+</html>
