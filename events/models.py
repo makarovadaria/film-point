@@ -1,7 +1,14 @@
 from django.db import models
 
+class UserSurvey(models.Model):
+    user_id = models.IntegerField()
+    genre = models.CharField(max_length=100)
+    year = models.CharField(max_length=10)
+    region = models.CharField(max_length=50)
+
+
 class UserAnswer(models.Model):
-    user_id = models.CharField(max_length=100)  # Replace with appropriate user identification
+    user_id = models.CharField(max_length=100)
     question_type = models.CharField(max_length=50)
     answer = models.CharField(max_length=255)
     # timestamp = models.DateTimeField(auto_now_add=True)
@@ -27,6 +34,7 @@ class Movie(models.Model):
     rating = models.IntegerField(default=0)
     genre = models.CharField(max_length=250)
     amenities = models.ManyToManyField(Amenities)
+
 
     def __str__(self):
         return self.movie_name
