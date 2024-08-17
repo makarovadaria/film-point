@@ -4,6 +4,61 @@ from events.api import get_film_list_by_filter, get_film_list_mock
 from .models import Movie
 from django.shortcuts import render
 
+# Marianna: With changes will rather be:
+from django.shortcuts import render, redirect
+from .forms import GenreForm, ReleaseDate, MovieRegion
+from .models import UserAnswer, Movie
+import requests
+
+def survey1(request):
+    if request.method == 'POST':
+        form = GenreForm(request.POST)
+        if form.is_valid():
+            # Save user answer to database
+            user_answer = UserAnswer(
+                user_id=request.user.id,  # Replace with user authentication
+                question_type='genre',
+                answer=form.cleaned_data['genre']
+            )
+            user_answer.save()
+            return redirect('survey2')
+    else:
+        form = GenreForm()
+    return render(request, 'movie_survey1.html', {'form': form})
+
+def survey2(request):
+    if request.method == 'POST':
+        form = ReleaseDate(request.POST)
+        if form.is_valid():
+            # Save user answer to database
+            user_answer = UserAnswer(
+                user_id=request.user.id,  # Replace with user authentication
+                question_type='year_range',
+                answer=form.cleaned_data['year_range']
+            )
+            user_answer.save()
+            return redirect('survey3')
+    else:
+        form = ReleaseDate()
+    return render(request, 'movie_survey2.html', {'form': form})
+
+def survey3(request):
+    if request.method == 'POST':
+        form = MovieRegion(request.POST)
+        if form.is_valid():
+            # Save user answer to database
+            user_answer = UserAnswer(
+                user_id=request.user.id,  # Replace with user authentication
+                question_type='region',
+                answer=form.cleaned_data['region']
+            )
+            user_answer.save()
+            return redirect('survey_result')
+    else:
+        form = MovieRegion()
+    return render(request, 'movie_survey3.html', {'form': form})
+# Similar views for survey3
+
 filter = {}
 def index(request):
     return render(request, 'events/index.html')
