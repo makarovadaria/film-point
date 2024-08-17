@@ -20,17 +20,17 @@ def survey_year(request):
     filter["years"] = years
     return render(request, 'events/movie_survey3.html')
 def survey_region(request):
-    region = request.GET.get('region')
-    filter["region"] = region
-
-    # if len(filter) < 4 :
-    #     return render(request, 'events/index.html')
+    # region = request.GET.get('region')
+    # filter["region"] = region
     #
     # years_str = filter.get("years", "")
     # if '-' in years_str:
     #     start_year, end_year = map(str, years_str.split('-'))
     #     filter["release_date_gte"] = start_year + "-01-01"
     #     filter["release_date_lte"] = end_year + "-12-31"
+    #
+    # if len(filter) < 4:
+    #     return render(request, 'events/index.html')
     #
     # movie_list = get_film_list_by_filter(filter)
     movie_list = get_film_list_mock(filter)

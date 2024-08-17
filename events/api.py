@@ -13,7 +13,7 @@ API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTYxYzYxMmJjM2UyYjdlMWZiYzgxMjdmYWY0
 API_URL = 'https://api.themoviedb.org/3'
 
 regions={}
-regions["usa"] = "US"
+regions["us"] = "US"
 regions["india"] = "IN"
 regions["europe"] = "FR"
 regions["asia"] = "JP"
