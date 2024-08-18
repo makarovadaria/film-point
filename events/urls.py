@@ -21,7 +21,6 @@ from events import views
 urlpatterns = [
     path('', views.index, name='index'),
     path('survey/', views.intro_survey, name='intro_survey'),
-    path('result/', views.get_movies, name='get_movies'),
     path('get_recommendations/', views.get_recommendations, name='get_recommendations'),
     path('movie/<int:movie_id>/', views.movie_detail, name='movie_detail'),
 ]

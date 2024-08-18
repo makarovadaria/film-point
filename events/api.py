@@ -32,19 +32,13 @@ with open(genres_file_path, 'r') as f:
 GENRE_MAP = {genre['id']: genre['name'] for genre in genres_data['genres']}
 
 
-def get_film_list_mock(filter):
-    file_path = os.path.join(settings.BASE_DIR, 'test_response.json')
-    with open(file_path, 'r') as file:
-        data = json.load(file)
-        recommended_movies_json = data.get('results', [])
-        objects_array = transform_movie_data(recommended_movies_json)
-        return random.sample(objects_array, 10)
+def get_film_list_by_filter(movie_filter):
+    genre = movie_filter[0]
+    date_total = movie_filter[1]
+    date_gte = date_total.split('-')[0]
+    date_lte = date_total.split('-')[1]
 
-
-def get_film_list_by_filter(filter):
-    base_url = f"{API_URL}/discover/movie?release_date.gte={filter['release_date_gte']}&release_date.lte={filter['release_date_lte']}&with_genres={genres[filter['genre']]}"
-    if filter["region"] != "none":
-        base_url += f"&region={regions[filter['region']]}"
+    base_url = f"{API_URL}/discover/movie?release_date.gte={date_gte}&release_date.lte={date_lte}&with_genres={genres.get(genre)}"
 
     response = requests.get(base_url, headers={'Authorization': f'Bearer {API_KEY}'})
 

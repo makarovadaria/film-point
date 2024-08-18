@@ -1,27 +1,28 @@
-import requests
 from events.api import get_film_list_by_filter
-from .models import Movie, SurveyQuestion
-from .forms import GenreForm, ReleaseDate, MovieRegion
-from django.shortcuts import redirect, render
-
-
-def get_movies(genre, year, region):
-    url = f'https://api.themoviedb.org/3/discover/movie?api_key=YOUR_API_KEY&with_genres={genre}&primary_release_date.gte={year}-01-01&primary_release_date.lte={year}-12-31&with_original_language={region}'
-    response = requests.get(url)
-    if response.status_code == 200:
-        data = response.json()
-        return data['results']
-    else:
-        return []  # Handle error
+from .models import Movie, SurveyQuestion, SurveyAnswer
+from django.shortcuts import render, redirect
 
 
 def intro_survey(request):
     current_user = request.user
-    user_survey_stage = current_user
-    questions = SurveyQuestion.objects.all()
-    if request.method == 'POST':
-        answer = request.POST.get('answer')
-
+    user_survey_stage = current_user.current_stage
+    # This line of code does this and this
+    questions = SurveyQuestion.objects.filter(stage=user_survey_stage)
+    stage_limit = 4
+    if request.method == 'POST' and user_survey_stage < stage_limit:
+        submitted_answer = request.POST.get('answer')
+        question_id = request.POST.get('question')
+        question = questions.get(id=int(question_id))
+        SurveyAnswer.objects.create(
+            user=current_user,
+            question=question,
+            answer=submitted_answer
+        )
+        current_user.current_stage += 1
+        current_user.save()
+        return redirect('intro_survey')
+    elif user_survey_stage == stage_limit:
+        return redirect('get_recommendations')
     return render(request, 'events/movie_survey.html', {'questions': questions})
 
 
@@ -29,17 +30,18 @@ def index(request):
     return render(request, 'events/index.html')
 
 
-def recommendation(request):
-    return render(request, 'events/recommendation.html')
-
-
 def get_recommendations(request):
-    # movie = get_object_or_404(id=movie_name)
-    # recommended_movies = Movie.objects.filter(genre=movie.genre).exclude(id=movie.name)
-
-    recommended_movies = get_film_list_by_filter(filter)
-    return render(request, '',
-                  {'movie': 'movie', 'recommended_movies': recommended_movies})
+    current_user = request.user
+    answers = SurveyAnswer.objects.filter(user=current_user)
+    answers_list = []
+    for answer in answers:
+        answers_list.append(answer.answer)
+    recommended_movies = get_film_list_by_filter(answers_list)
+    return render(
+        request,
+        'events/recommendation.html',
+        {'movie': 'movie', 'recommended_movies': recommended_movies}
+    )
 
 
 def movie_list(request):
