@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import SurveyQuestion
 
-# Register your models here.
+
+class SurveyQuestionAdmin(admin.ModelAdmin):
+    list_display = ('stage', 'question', 'filter')
+
+
+admin.site.register(SurveyQuestion, SurveyQuestionAdmin)

@@ -1,23 +1,32 @@
 from django.db import models
-
-class UserSurvey(models.Model):
-    user_id = models.IntegerField()
-    genre = models.CharField(max_length=100)
-    year = models.CharField(max_length=10)
-    region = models.CharField(max_length=50)
+from django.contrib.auth.models import AbstractUser
 
 
-class UserAnswer(models.Model):
-    user_id = models.CharField(max_length=100)
-    question_type = models.CharField(max_length=50)
-    answer = models.CharField(max_length=255)
-    # timestamp = models.DateTimeField(auto_now_add=True)
+class User(AbstractUser):
+    current_stage = models.IntegerField(default=1, blank=True)
+
+
+class SurveyQuestion(models.Model):
+    question = models.TextField()
+    filter = models.CharField(max_length=32, default='filter')
+    stage = models.IntegerField(default=1)
+
+    def __str__(self):
+        return self.question
+
+
+class SurveyAnswer(models.Model):
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
+    answer = models.TextField()
+    question = models.ForeignKey(SurveyQuestion, on_delete=models.CASCADE)
+
 
 class MoviePreference(models.Model):
     user_id = models.CharField(max_length=100)
     genre = models.CharField(max_length=50)
     year_range = models.CharField(max_length=50)
     region = models.CharField(max_length=50)
+
 
 class Amenities(models.Model):
     name = models.CharField(max_length=128)
@@ -35,24 +44,12 @@ class Movie(models.Model):
     genre = models.CharField(max_length=250)
     amenities = models.ManyToManyField(Amenities)
 
-
     def __str__(self):
         return self.movie_name
 
 
-class User(models.Model):
-    name = models.CharField(max_length=128)
-    password = models.CharField(max_length=128)
-    email = models.CharField(max_length=128)
-    birthday = models.DateField()
-
-    def __str__(self):
-        return self.user_name
-
-
-
 class Review(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey('User', on_delete=models.CASCADE)
     movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
     comment = models.TextField()
     rating = models.IntegerField()
