@@ -11,11 +11,12 @@
 </head>
 <body>
 <div>
-<form method="post">
+<form method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
-    <table>{{ GenreForm }}</table>
-    <button type="submit">Next</button>
+    {% for question in questions %}
+    <button name="answer" value="{{ question.filter }}" class="button-53">{{ question }}</button>
+    {% endfor %}
+    <button class="button-53" type="submit">Next</button>
 </form>
 </div>
 
