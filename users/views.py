@@ -45,3 +45,6 @@ def logout_view(request):
     messages.success(request, 'You have been logged out.')
     return redirect('index')
 
+def profile(request):
+    return render(request, 'events/profile.html')
+
