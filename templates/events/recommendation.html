@@ -1,95 +1,27 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommendations</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        .container {
-            width: 90%;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: #fff;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-        h1 {
-            color: #333;
-            text-align: center;
-            margin-bottom: 40px;
-        }
-        .movie-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .movie-item {
-            background-color: #f9f9f9;
-            padding: 15px;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .movie-item h2 {
-            font-size: 22px;
-            margin-bottom: 10px;
-        }
-        .movie-item p {
-            margin: 5px 0;
-        }
-        .movie-item .buttons {
-            margin-top: 15px;
-        }
-        .movie-item .btn {
-            padding: 10px 15px;
-            margin: 5px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-        .movie-item .btn-watchlist {
-            background-color: #5cb85c;
-            color: white;
-        }
-        .movie-item .btn-review {
-            background-color: #0275d8;
-            color: white;
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <h1>Our recommendations</h1>
+{% extends 'events/base.html' %}
+{% block title %}Home{% endblock %}
 
-        <div class="movie-grid">
-            <div class="movie-item">
-                <h2>Movie Title 1</h2>
-                <p><strong>Description:</strong> Brief description of the movie...</p>
-                <p><strong>Year:</strong> 2022</p>
-                <p><strong>Cast:</strong> Actor 1, Actor 2, Actor 3</p>
-                <p><strong>Duration:</strong> 120 mins</p>
-                <div class="buttons">
-                    <button class="btn btn-watchlist">Add to Watching List</button>
-                    <button class="btn btn-review">View Review</button>
-                </div>
+{% block content %}
+    <h1>Bravo, <br>Movie Maestro!🍿 <br> Check out these awesome movie picks for tonight. </h1><br>
+
+    {% for movie in recommended_movies %}
+        <div class="movie-container">
+            <div class="movie-content">
+                <h2 class="movie-title">{{ movie.name }}</h2>
+                <div class="movie-year">{{ movie.year }}</div>
+                <div class="movie-rating">Rating: {{ movie.rating }}</div>
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
             </div>
-            <div class="movie-item">
-                <h2>Movie Title 2</h2>
-                <p><strong>Description:</strong> Brief description of the movie...</p>
-                <p><strong>Year:</strong> 2021</p>
-                <p><strong>Cast:</strong> Actor 4, Actor 5, Actor 6</p>
-                <p><strong>Duration:</strong> 110 mins</p>
-                <div class="buttons">
-                    <button class="btn btn-watchlist">Add to Watching List</button>
-                    <button class="btn btn-review">View Review</button>
-                </div>
+            <div class="movie-description">
+                <p>{{ movie.description }}</p>
             </div>
+            <div class="movie-genre">Genres: {{ movie.genre }}</div>
+            <div class="buttons">
+                <button class="btn btn-watchlist">Add to Watching List</button>
+                <button class="btn btn-review">View Review</button>
+            </div>
+            <br>
         </div>
-    </div>
-</body>
-</html>
+
+    {% endfor %}
+{% endblock %}

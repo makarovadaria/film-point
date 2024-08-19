@@ -37,8 +37,11 @@ def get_film_list_by_filter(movie_filter):
     date_total = movie_filter[1]
     date_gte = date_total.split('-')[0]
     date_lte = date_total.split('-')[1]
+    region = movie_filter[2]
 
     base_url = f"{API_URL}/discover/movie?release_date.gte={date_gte}&release_date.lte={date_lte}&with_genres={genres.get(genre)}"
+    if region != "none":
+        base_url += f"&region={regions.get(region)}"
 
     response = requests.get(base_url, headers={'Authorization': f'Bearer {API_KEY}'})
 

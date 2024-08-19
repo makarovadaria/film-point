@@ -2,10 +2,14 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-
+    
 <h1>FilmPoint Events</h1>
-<button class="button-53" role="button" onclick="location.href='/survey'">Begin</button>
-
-</body>
-</html>
+    {% if user.is_authenticated %}
+        <button class="button-53" role="button" onclick="location.href='/survey'">Begin</button>
+    {% else %}
+        <div>
+        Please, login or register
+        </div>
+    {% endif %}
+    
 {% endblock %}
