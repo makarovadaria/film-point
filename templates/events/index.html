@@ -1,15 +1,28 @@
 {% extends 'events/base.html' %}
-{% block title %}Home{% endblock %}
+{% block title %}FilmPoint Survey{% endblock %}
 
 {% block content %}
     
-<h1>FilmPoint Events</h1>
+<h1 class="text-center"> This is FilmPoint!</h1>
+    <h2 class="text-center"> Let us entertain you!</h2>
+
     {% if user.is_authenticated %}
-        <button class="button-53" role="button" onclick="location.href='/survey'">Begin</button>
+
+        <div class="centered-button-container">
+        <div class="d-grid gap-2 col-6 mx-auto">
+            <button type="button" class="btn btn-custom me-2 w-200" onclick="location.href='/survey'">Start here!</button>
+        </div>
+ </div>
+
     {% else %}
         <div>
-        Please, login or register
+        <h1 class="text-center"> To continue, please log in or register! </h1>
         </div>
+
     {% endif %}
-    
+
+
+
+
 {% endblock %}
+

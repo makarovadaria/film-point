@@ -4,23 +4,40 @@
 {% block content %}
     <h1>User Profile</h1>
 
-    <div class="profile-info">
-        <h2>Personal Information</h2>
-        <p><strong>Name:</strong> {{ user_name }}</p>
-        <p><strong>Date of Birth:</strong> {{ user_dob }}</p>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm" style="background-color: rgba(255, 255, 255, 0.3); border: none;">
+                <div class="card-body">
+
+            <h2>Personal Information</h2>
+            <p><strong>Name:</strong> {{ user_name }}</p>
+            <p><strong>Date of Birth:</strong> {{ user_dob }}</p>
+        </div>
     </div>
+</div>
+</div>
+</div>
 
     <div class="section watching-list">
+    <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm" style="background-color: rgba(255, 255, 255, 0.3); border: none;">
+                <div class="card-body">
         <h2>Your Watchlist</h2>
-        <ul>
+        <ul class="movie-list">
             {% for movie in movies %}
                 <div class="movie-content">
                 <h2 class="movie-title">{{ movie.name }}</h2>
+                    <br>
                 <div class="movie-year">{{ movie.year }}</div>
                 <div class="movie-rating">Rating: {{ movie.rating }}</div>
                 <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
             </div>
-            <div class="movie-description">
+            <div class="movie-info">
                 <p>{{ movie.description }}</p>
             </div>
             <div class="movie-genre">Genres: {{ movie.genre }}</div>
@@ -37,7 +54,33 @@
         </ul>
 
     </div>
+</div>
+</div>
 
+        <div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card shadow-sm" style="background-color: rgba(255, 255, 255, 0.3); border: none;">
+                <div class="card-body">
+            <h2>Reviews</h2>
+            <ul class="review-list">
+                <li>
+                    <span class="review-title"><b>Review of Movie Title 1</b></span>
+                    <br>
+                    <span class="review-text">This movie was amazing because...</span>
+                </li>
+                <li>
+                    <span class="review-title"><b>Review of Movie Title 2</b></span>
+                    <br>
+                    <span class="review-text">I didn't like this movie because...</span>
+                </li>
+            </ul>
+        </div>
+     </div>
+</div>
+</div>
+</div>
 {#    <div class="section reviews">#}
 {#        <h2>Reviews</h2>#}
 {#        <ul class="review-list">#}

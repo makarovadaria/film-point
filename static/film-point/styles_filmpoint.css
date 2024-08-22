@@ -235,3 +235,41 @@ body {
     background-color: rgb(154, 168, 164); /* Button color on hover */
   }
 
+
+
+   /* Triin */
+
+.input-53 {
+  background-color: #3DD1E7;
+  border: 2px solid #E5E7EB;
+  box-sizing: border-box;
+  color: #000000;
+  font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  padding: .75rem 1.65rem;
+  width: 100%;
+  max-width: 500px;
+  border-radius: 5px;
+  margin-bottom: 1.5rem; /* Increased margin between input fields */
+  outline: none;
+}
+
+p {
+  margin-top: 1.5rem; /* Increased margin for paragraph text */
+}
+
+  .logo-box {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
+            padding: 8px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-box img {
+            width: 40px; /* Adjust the width as needed */
+            height: auto;
+        }

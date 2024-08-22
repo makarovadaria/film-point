@@ -1,85 +1,30 @@
-{#<!DOCTYPE html>#}
-{#<html lang="en">#}
-{#<head>#}
-{#    <meta charset="UTF-8">#}
-{#    <title>Film</title>#}
-{#    <link rel="stylesheet" href="styles_filmpoint.css">#}
-{#    <script src="scripts_filmpoint.js"></script>#}
-{##}
-{#    <style>#}
-{##}
-{##}
-{#    </style>#}
-{##}
-{##}
-{#</head>#}
-{##}
-{##}
-{#    <body id="Film">#}
-{#        <nav class="w3-bar-item">#}
-{#            <a href="index.html" class="w3-bar-item w3-button">Home</a>#}
-{#            <a href="auth.html" class="w3-bar-item">Authorization</a>#}
-{#            <a href="account.html" class="w3-bar-item">Account</a>#}
-{#         </nav>#}
-{#    <br>#}
-{##}
-{#    <h1 class="main-heading" id="heading-welcome">Welcome to FilmPoint</h1>#}
-{##}
-{#<br>#}
-{##}
-{#<div class="form-container narrow-form">#}
-{#    <h2 class="text-center">Sign Up</h2>#}
-{#    <form method="post" action="{% url 'signup' %}">#}
-{##}
-{##}
-{#        <div class="form-group">#}
-{#            <label for="name">Name</label>#}
-{#            <input type="text" id="name" name="name" class="button-53 styled-input-as-button" required>#}
-{#        </div>#}
-{##}
-{#        <div class="form-group">#}
-{#            <label for="email">Email</label>#}
-{#            <input type="email" id="email" name="email" class="button-53 styled-input-as-button" required>#}
-{#        </div>#}
-{##}
-{#        <div class="form-group">#}
-{#            <label for="password">Password</label>#}
-{#            <input type="password" id="password" name="password" class="button-53 styled-input-as-button" required>#}
-{#        </div>#}
-{##}
-{#        <div class="form-group">#}
-{#            <label for="password2">Confirm Password</label>#}
-{#            <input type="password" id="password2" name="password2" class="button-53 styled-input-as-button" required>#}
-{#        </div>#}
-{##}
-{##}
-{##}
-{#        <button type="submit" class="button-53 narrow-button">Sign Up</button>#}
-{#    </form>#}
-{#    <p class="text-center mt-3">#}
-{#        Already have an account?#}
-{#        <a href="{% url 'login' %}" class="button-53 narrow-button" style="display: inline-block; text-align: center; padding: 10px 20px; background-color: #3dd1e7; color: #000000; text-decoration: none; border-radius: 4px;">Log in here</a>.#}
-{#    </p>#}
-{#</div>#}
-{##}
-{##}
-{# </body>#}
-{#</html>#}
-
 
 {% extends 'events/base.html' %}
 
-
-{% block title %}Login{% endblock %}
+{% block title %}Sign Up{% endblock %}
 
 {% block content %}
-<h2>Sign up</h2>
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+
+            <div class="card custom-card">
+                <div class="card-body">
+    <h2 class="text-center mb-4">Sign Up</h2>
     <form method="POST" class="form-group">
         {% csrf_token %}
-        {{ form.as_p  }}
-        <button type="submit" class="btn btn-primary">Sign up</button>
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-custom me-2 w-100">Sign Up</button>
     </form>
-    <p class="mt-3">
-        Don't have an account? <a href="{% url 'signup' %}">Register here</a>.
-    </p>
+
+    <br>
+
+        <a href="{% url 'login' %}" class="btn btn-custom me-2 w-100">Already have an account? Log in here</a>
+
+</div>
+  </div>
+</div>
+</div>
+</div>
+
 {% endblock %}
