@@ -2,43 +2,39 @@
 {% block title %}Home{% endblock %}
 
 {% block content %}
-        <h1>User Profile</h1>
+    <h1>User Profile</h1>
 
-        <div class="profile-info">
-            <h2>Personal Information</h2>
-            <p><strong>Name:</strong> {{ user_name }}</p>
-            <p><strong>Date of Birth:</strong> {{ user_dob }}</p>
-        </div>
+    <div class="profile-info">
+        <h2>Personal Information</h2>
+        <p><strong>Name:</strong> {{ user_name }}</p>
+        <p><strong>Date of Birth:</strong> {{ user_dob }}</p>
+    </div>
 
-        <div class="section watching-list">
-            <h2>Watching List</h2>
-            <ul class="movie-list">
-                <li>
-                    <span class="movie-title">Movie Title 1</span>
-                    <br>
-                    <span class="movie-info">Additional info about the movie...</span>
-                </li>
-                <li>
-                    <span class="movie-title">Movie Title 2</span>
-                    <br>
-                    <span class="movie-info">Additional info about the movie...</span>
-                </li>
-            </ul>
-        </div>
+    <div class="section watching-list">
+        <h2>Your Watchlist</h2>
+        <ul>
+            {% for movie in movies %}
+                <li>{{ movie.name }}</li>
+            {% empty %}
+                <li>No movies in your watchlist.</li>
+            {% endfor %}
+        </ul>
 
-        <div class="section reviews">
-            <h2>Reviews</h2>
-            <ul class="review-list">
-                <li>
-                    <span class="review-title">Review of Movie Title 1</span>
-                    <br>
-                    <span class="review-text">This movie was amazing because...</span>
-                </li>
-                <li>
-                    <span class="review-title">Review of Movie Title 2</span>
-                    <br>
-                    <span class="review-text">I didn't like this movie because...</span>
-                </li>
-            </ul>
-        </div>
+    </div>
+
+    <div class="section reviews">
+        <h2>Reviews</h2>
+        <ul class="review-list">
+            <li>
+                <span class="review-title">Review of Movie Title 1</span>
+                <br>
+                <span class="review-text">This movie was amazing because...</span>
+            </li>
+            <li>
+                <span class="review-title">Review of Movie Title 2</span>
+                <br>
+                <span class="review-text">I didn't like this movie because...</span>
+            </li>
+        </ul>
+    </div>
 {% endblock %}

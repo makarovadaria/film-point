@@ -5,7 +5,7 @@ import random
 from django.conf import settings
 import requests
 
-from events.models import Movie
+from events.models import Movie, Watchlist
 
 API_KEY = 'eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiJiMTYxYzYxMmJjM2UyYjdlMWZiYzgxMjdmYWY0M2I0NiIsIm5iZiI6MTcyMzgwOTgwMC4wNDkxMTksInN1YiI6IjY2YmRkYjAyNTNhNTI1NTY4NmUxNDdiYiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.c9YAGpSr1isIluCE77kzgro9UvlmIy0e-fRqqoPVkfM'
 API_URL = 'https://api.themoviedb.org/3'
@@ -32,7 +32,7 @@ with open(genres_file_path, 'r') as f:
 GENRE_MAP = {genre['id']: genre['name'] for genre in genres_data['genres']}
 
 
-def get_film_list_by_filter(movie_filter):
+def get_film_list_by_filter(movie_filter, request):
     genre = movie_filter[0]
     date_total = movie_filter[1]
     date_gte = date_total.split('-')[0]
@@ -47,17 +47,18 @@ def get_film_list_by_filter(movie_filter):
 
     if response.status_code == 200:
         recommended_movies_json = response.json().get('results', [])
-        objects_array = transform_movie_data(recommended_movies_json)
+        objects_array = transform_movie_data(recommended_movies_json, request)
         recommended_movies = random.sample(objects_array, 10)
     else:
         recommended_movies = []
     return recommended_movies
 
 
-def transform_movie_data(movie_data):
+def transform_movie_data(movie_data, request):
     movies = []
     for data in movie_data:
         name = data.get("title", "")
+        movie_id = data.get("id", "")
         image = data.get("poster_path", "")
         genre_ids = data.get("genre_ids", [])
         genre_names = [GENRE_MAP.get(genre_id, "Unknown") for genre_id in genre_ids]
@@ -66,7 +67,10 @@ def transform_movie_data(movie_data):
         description = data.get("overview", "")
         rating = data.get("vote_average", 0.0)
 
-        movie = Movie(name=name, image=image, genre=genre, year=year, description=description, rating=rating)
+        movie = Movie(movie_id = movie_id, name=name, image=image, genre=genre, year=year, description=description, rating=rating)
+
+        watchlist_exists = Watchlist.objects.filter(user=request.user, movie__movie_id=movie_id).exists()
+        movie.isWatchListed = watchlist_exists
         movies.append(movie)
 
     return movies

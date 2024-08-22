@@ -16,12 +16,46 @@
                 <p>{{ movie.description }}</p>
             </div>
             <div class="movie-genre">Genres: {{ movie.genre }}</div>
-            <div class="buttons">
-                <button class="btn btn-watchlist">Add to Watching List</button>
-                <button class="btn btn-review">View Review</button>
+            <img class="buttons">
+                {% if movie.isWatchListed %}
+                    <img src="/static/film-point/star.png" style="width: 25px; height: 25px;">Added to Watchlist</img>
+                {% else %}
+                    <form id="watchlistForm-{{ movie.movie_id }}" method="POST" action="{% url 'add_to_watchlist' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="movie_id" value="{{ movie.movie_id }}">
+                        <input type="hidden" name="movie_name" value="{{ movie.name }}">
+                        <input type="hidden" name="movie_image" value="{{ movie.image }}">
+                        <input type="hidden" name="movie_year" value="{{ movie.year }}">
+                        <input type="hidden" name="movie_rating" value="{{ movie.rating }}">
+                        <input type="hidden" name="movie_description" value="{{ movie.description }}">
+                        <input type="hidden" name="movie_genre" value="{{ movie.genre }}">
+                        <button id="watchlistButton-{{ movie.movie_id }}" type="button" onclick="addToWatchlist({{ movie.movie_id }})">
+                            Add to Watching List
+                        </button>
+                    </form>
+                {% endif %}
             </div>
             <br>
         </div>
-
     {% endfor %}
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script type="text/javascript">
+        function addToWatchlist(movie_id) {
+            const form = $(`#watchlistForm-${movie_id}`);
+            $.ajax({
+                type: form.attr('method'),
+                url: form.attr('action'),
+                data: form.serialize(),
+                success: function (response) {
+                    if (response.status === 'added') {
+                        $(`#watchlistButton-${movie_id}`).replaceWith('<img src="/static/film-point/star.png"  style="width: 25px; height: 25px;">Added to Watchlist</img>');
+                    }
+                },
+                error: function () {
+                    alert('An error occurred. Please try again.');
+                }
+            });
+        }
+    </script>
 {% endblock %}

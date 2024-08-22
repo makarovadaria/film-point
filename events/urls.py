@@ -23,4 +23,5 @@ urlpatterns = [
     path('survey/', views.intro_survey, name='intro_survey'),
     path('get_recommendations/', views.get_recommendations, name='get_recommendations'),
     path('movie/<int:movie_id>/', views.movie_detail, name='movie_detail'),
+    path('add_to_watchlist/', views.add_to_watchlist, name='add_to_watchlist'),
 ]
