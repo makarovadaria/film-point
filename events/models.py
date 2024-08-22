@@ -5,7 +5,6 @@ from django.contrib.auth.models import AbstractUser
 class User(AbstractUser):
     current_stage = models.IntegerField(default=1, blank=True)
 
-
 class SurveyQuestion(models.Model):
     question = models.TextField()
     filter = models.CharField(max_length=32, default='filter')

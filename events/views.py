@@ -3,6 +3,18 @@ from .models import Movie, SurveyQuestion, SurveyAnswer
 from django.shortcuts import render, redirect
 
 
+def retake_survey(request):
+    current_user = request.user
+    stage_check = 1
+    if request.method == 'POST':
+        stage_reset = request.POST.get('reset') == "reset"
+        if stage_reset:
+            current_user.current_stage = 1
+            current_user.save()
+            if stage_check == current_user.current_stage:
+                return redirect('retake_survey')
+
+
 def intro_survey(request):
     current_user = request.user
     user_survey_stage = current_user.current_stage
