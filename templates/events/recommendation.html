@@ -3,6 +3,12 @@
 
 {% block content %}
     <h1>Bravo, <br>Movie Maestro!🍿 <br> Check out these awesome movie picks for tonight. </h1><br>
+    <form method="POST" action="{% url 'retake_survey' %}">
+        {% csrf_token %}
+        <input type="hidden" name="reset" value="reset">
+        <button class="button-53" type="submit">Retake Survey</button>
+    </form>
+
 
     {% for movie in recommended_movies %}
         <div class="movie-container">
