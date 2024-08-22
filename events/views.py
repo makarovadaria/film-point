@@ -17,7 +17,7 @@ def retake_survey(request):
             answers = SurveyAnswer.objects.filter(user=current_user)
             answers.delete()
             if stage_check == current_user.current_stage:
-                return redirect('index')
+                return redirect('intro_survey')
 
 
 def intro_survey(request):
