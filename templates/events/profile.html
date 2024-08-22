@@ -14,7 +14,23 @@
         <h2>Your Watchlist</h2>
         <ul>
             {% for movie in movies %}
-                <li>{{ movie.name }}</li>
+                <div class="movie-content">
+                <h2 class="movie-title">{{ movie.name }}</h2>
+                <div class="movie-year">{{ movie.year }}</div>
+                <div class="movie-rating">Rating: {{ movie.rating }}</div>
+                <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
+            </div>
+            <div class="movie-description">
+                <p>{{ movie.description }}</p>
+            </div>
+            <div class="movie-genre">Genres: {{ movie.genre }}</div>
+                <form id="watchlistForm-{{ movie.movie_id }}" method="POST" action="{% url 'delete_from_watchlist' %}">
+                        {% csrf_token %}
+                        <input type="hidden" name="movie_id" value="{{ movie.movie_id }}">
+                        <button id="watchlistButton-{{ movie.movie_id }}" type="submit">
+                            Delete from Watching List
+                        </button>
+                </form>
             {% empty %}
                 <li>No movies in your watchlist.</li>
             {% endfor %}
@@ -22,19 +38,19 @@
 
     </div>
 
-    <div class="section reviews">
-        <h2>Reviews</h2>
-        <ul class="review-list">
-            <li>
-                <span class="review-title">Review of Movie Title 1</span>
-                <br>
-                <span class="review-text">This movie was amazing because...</span>
-            </li>
-            <li>
-                <span class="review-title">Review of Movie Title 2</span>
-                <br>
-                <span class="review-text">I didn't like this movie because...</span>
-            </li>
-        </ul>
-    </div>
+{#    <div class="section reviews">#}
+{#        <h2>Reviews</h2>#}
+{#        <ul class="review-list">#}
+{#            <li>#}
+{#                <span class="review-title">Review of Movie Title 1</span>#}
+{#                <br>#}
+{#                <span class="review-text">This movie was amazing because...</span>#}
+{#            </li>#}
+{#            <li>#}
+{#                <span class="review-title">Review of Movie Title 2</span>#}
+{#                <br>#}
+{#                <span class="review-text">I didn't like this movie because...</span>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
 {% endblock %}

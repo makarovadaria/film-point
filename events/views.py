@@ -1,5 +1,5 @@
 from django.http import JsonResponse
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 
 from events.api import get_film_list_by_filter
 from .models import Movie, SurveyQuestion, SurveyAnswer, Watchlist
@@ -83,3 +83,14 @@ def add_to_watchlist(request):
 
     watchlist, created = Watchlist.objects.get_or_create(user=request.user, movie=movie)
     return JsonResponse({'status': 'added'})
+
+def delete_from_watchlist(request):
+    movie_id = request.POST.get('movie_id')
+
+    movie = get_object_or_404(Movie, movie_id=movie_id)
+
+    watchlist_entry = Watchlist.objects.get(user=request.user, movie=movie)
+    watchlist_entry.delete()
+    movie_ids_in_watchlist = Watchlist.objects.filter(user=request.user).values_list('movie_id', flat=True)
+    movies_in_watchlist = Movie.objects.filter(id__in=movie_ids_in_watchlist)
+    return render(request, 'events/profile.html', {'movies': movies_in_watchlist})  #

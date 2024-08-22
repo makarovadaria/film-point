@@ -24,4 +24,5 @@ urlpatterns = [
     path('get_recommendations/', views.get_recommendations, name='get_recommendations'),
     path('movie/<int:movie_id>/', views.movie_detail, name='movie_detail'),
     path('add_to_watchlist/', views.add_to_watchlist, name='add_to_watchlist'),
+    path('delete_from_watchlist/', views.delete_from_watchlist, name='delete_from_watchlist'),
 ]
