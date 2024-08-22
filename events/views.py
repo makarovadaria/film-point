@@ -5,14 +5,17 @@ from django.shortcuts import render, redirect
 
 def retake_survey(request):
     current_user = request.user
+    current_user.current_stage = 1
     stage_check = 1
     if request.method == 'POST':
         stage_reset = request.POST.get('reset') == "reset"
         if stage_reset:
             current_user.current_stage = 1
             current_user.save()
+            answers = SurveyAnswer.objects.filter(user=current_user)
+            answers.delete()
             if stage_check == current_user.current_stage:
-                return redirect('retake_survey')
+                return redirect('index')
 
 
 def intro_survey(request):
