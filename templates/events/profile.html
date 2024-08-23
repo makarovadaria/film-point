@@ -20,41 +20,41 @@
 </div>
 </div>
 
-    <div class="section watching-list">
+  <div class="section watching-list">
     <div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-
-            <div class="card shadow-sm" style="background-color: rgba(255, 255, 255, 0.3); border: none;">
-                <div class="card-body">
-        <h2>Your Watchlist</h2>
-        <ul class="movie-list">
-            {% for movie in movies %}
-                <div class="movie-content">
-                <h2 class="movie-title">{{ movie.name }}</h2>
-                    <br>
-                <div class="movie-year">{{ movie.year }}</div>
-                <div class="movie-rating">Rating: {{ movie.rating }}</div>
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="card shadow-sm" style="background-color: rgba(255, 255, 255, 0.3); border: none;">
+                    <div class="card-body">
+                        <h2>Your Watchlist</h2>
+                        <div class="movie-list">
+                            {% for movie in movies %}
+                                <div class="movie-box">
+                                    <h2 class="movie-title">{{ movie.name }}</h2>
+                                    <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
+                                    <div class="movie-details">
+                                        <div class="movie-year">Year: {{ movie.year }}</div>
+                                        <div class="movie-rating">Rating: {{ movie.rating }}</div>
+                                        <div class="movie-genre">Genres: {{ movie.genre }}</div>
+                                        <p class="movie-description">{{ movie.description }}</p>
+                                    </div>
+                                    <form id="watchlistForm-{{ movie.movie_id }}" method="POST" action="{% url 'delete_from_watchlist' %}">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="movie_id" value="{{ movie.movie_id }}">
+                                        <button id="watchlistButton-{{ movie.movie_id }}" type="submit" class="btn btn-custom">
+                                            Delete from Watching List
+                                        </button>
+                                    </form>
+                                </div>
+                            {% empty %}
+                                <p>No movies in your watchlist.</p>
+                            {% endfor %}
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="movie-info">
-                <p>{{ movie.description }}</p>
-            </div>
-            <div class="movie-genre">Genres: {{ movie.genre }}</div>
-                <form id="watchlistForm-{{ movie.movie_id }}" method="POST" action="{% url 'delete_from_watchlist' %}">
-                        {% csrf_token %}
-                        <input type="hidden" name="movie_id" value="{{ movie.movie_id }}">
-                        <button id="watchlistButton-{{ movie.movie_id }}" type="submit">
-                            Delete from Watching List
-                        </button>
-                </form>
-            {% empty %}
-                <li>No movies in your watchlist.</li>
-            {% endfor %}
-        </ul>
-
+        </div>
     </div>
-</div>
 </div>
 
         <div class="container mt-5">
