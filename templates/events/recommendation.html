@@ -5,23 +5,21 @@
     <h1>Bravo, <br>Movie Maestro!🍿 <br> Check out these awesome movie picks for tonight. </h1><br>
 
     {% for movie in recommended_movies %}
-        <div class="movie-container">
-            <div class="movie-content">
+    <div class="movie-container">
+        <div class="movie-content">
+            <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
+            <div class="movie-details">
                 <h2 class="movie-title">{{ movie.name }}</h2>
-                <div class="movie-year">{{ movie.year }}</div>
+                <div class="movie-year">Year: {{ movie.year }}</div>
                 <div class="movie-rating">Rating: {{ movie.rating }}</div>
-                <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
+                <div class="movie-genre">Genres: {{ movie.genre }}</div>
+                <p class="movie-description">{{ movie.description }}</p>
+                <div class="buttons">
+                    <button class="btn btn-custom">Add to Watching List</button>
+                    <button class="btn btn-custom">View Review</button>
+                </div>
             </div>
-            <div class="movie-description">
-                <p>{{ movie.description }}</p>
-            </div>
-            <div class="movie-genre">Genres: {{ movie.genre }}</div>
-            <div class="buttons">
-                <button class="btn btn-custom">Add to Watching List</button>
-                <button class="btn btn-custom">View Review</button>
-            </div>
-            <br>
         </div>
-
-    {% endfor %}
+    </div>
+{% endfor %}
 {% endblock %}

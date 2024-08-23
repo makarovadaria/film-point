@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
+
 class User(AbstractUser):
     current_stage = models.IntegerField(default=1, blank=True)
-
 
 class SurveyQuestion(models.Model):
     question = models.TextField()
@@ -36,16 +36,17 @@ class Amenities(models.Model):
 
 
 class Movie(models.Model):
+    movie_id = models.IntegerField(unique=True, default=-1)
     name = models.CharField(max_length=128)
     description = models.TextField()
     year = models.TextField()
     image = models.CharField(max_length=500)
-    rating = models.IntegerField(default=0)
+    rating = models.FloatField(default=0)
     genre = models.CharField(max_length=250)
-    amenities = models.ManyToManyField(Amenities)
+    # amenities = models.ManyToManyField(Amenities)
 
     def __str__(self):
-        return self.movie_name
+        return self.name
 
 
 class Review(models.Model):
@@ -72,3 +73,11 @@ class Answer(models.Model):
 
     def __str__(self):
         return self.answer
+
+
+class Watchlist(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    movie = models.ForeignKey(Movie, on_delete=models.CASCADE)
+
+    def __str__(self):
+        return f"{self.user.username}'s Watchlist"

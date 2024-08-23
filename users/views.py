@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from django.contrib.auth.forms import AuthenticationForm
 from django.contrib.auth import login, logout, authenticate
 from django.contrib import messages
+
+from events.models import Watchlist, Movie
 from .forms import RegisterForm
 
 
@@ -12,7 +14,7 @@ def index(request):
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        form = RegisterForm(request.POST)
+        form = MovieForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
@@ -46,5 +48,6 @@ def logout_view(request):
     return redirect('index')
 
 def profile(request):
-    return render(request, 'events/profile.html')
-
+    movie_ids_in_watchlist = Watchlist.objects.filter(user=request.user).values_list('movie_id', flat=True)
+    movies_in_watchlist = Movie.objects.filter(id__in=movie_ids_in_watchlist)
+    return render(request, 'events/profile.html', {'movies': movies_in_watchlist})#
