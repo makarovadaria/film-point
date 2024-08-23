@@ -75,7 +75,7 @@
                      class="d-inline-block align-text-top" style="margin-right: 10px;">
                 FilmPoint
             </a>
-            
+
 
             <!-- Toggler for mobile view -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
@@ -92,25 +92,22 @@
 
                     {% if user.is_authenticated %}
                         <!-- Visible only when the user is authenticated (signed in) -->
-                        <a class="nav-link" href="{% url 'retake_survey' %}">
-                        </a>
+                        <a class="nav-link" href="{% url 'retake_survey' %}"></a>
                         <form method="POST" action="{% url 'retake_survey' %}">
                             {% csrf_token %}
                             <input type="hidden" name="reset" value="reset">
-                            <button class="nav-link"
-                                    type="submit"
-                                    style="font-family: 'Arial', sans-serif; color: #0D253F;"
-                                    >Retake Survey
+                            <button class="nav-link" type="submit"
+                                    style="font-family: 'Arial', sans-serif; color: #0D253F;">Retake Survey
                             </button>
                         </form>
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'profile' %}">Profile</a>
                         </li>
-                        
+
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
-                        
+
                     {% else %}
                         <!-- Visible only when the user is not authenticated and not on the login page -->
                         {% if request.resolver_match.url_name != 'login' %}
