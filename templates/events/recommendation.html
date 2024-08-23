@@ -32,7 +32,7 @@
                                     <input type="hidden" name="movie_rating" value="{{ movie.rating }}">
                                     <input type="hidden" name="movie_description" value="{{ movie.description }}">
                                     <input type="hidden" name="movie_genre" value="{{ movie.genre }}">
-                                    <button class="btn btn-custom" id="watchlistButton-{{ movie.movie_id }}" type="button" onclick="addToWatchlist({{ movie.movie_id }})">
+                                    <button class="btn btn-light" id="watchlistButton-{{ movie.movie_id }}" type="button" onclick="addToWatchlist({{ movie.movie_id }})">
                                         Add to Watching List
                                     </button>
                                 </form>
