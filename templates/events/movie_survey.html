@@ -1,28 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    {% load static %}
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Movie Recommendation Survey 1</title>
-    <link rel="stylesheet" href="{% static 'film-point/styles_filmpoint.css' %}">
+{% extends 'events/base.html' %}
+{% block title %}Home{% endblock %}
 
-</head>
+{% block content %}
+
 <body>
 <div>
-<form method="POST">
-    {% csrf_token %}
-    {% for question in questions %}
-        <input type="hidden" name="question" value="{{ question.id }}">
-    <button type="submit" name="answer" value="{{ question.filter }}" class="button-53">{{ question }}</button>
-    {% endfor %}
-</form>
+    <form method="POST">
+        {% csrf_token %}
+        {% for question in questions %}
+            <input type="hidden" name="question" value="{{ question.id }}">
+            <button type="submit" name="answer" value="{{ question.filter }}" class="button-53">{{ question }}</button>
+        {% endfor %}
+    </form>
 </div>
-
-<div class="logo-container">
-    <img src="{% static '/film-point/TMDB_logo.svg' %}" alt="TMDB Logo" class="tmdb-logo">
-</div>
-
-
-</body>
-</html>
+{% endblock %}
