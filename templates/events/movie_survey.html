@@ -3,17 +3,19 @@
 
 {% block content %}
 
-<div>
-    <form method="POST">
-        {% csrf_token %}
-        {% for question in questions %}
-            <input type="hidden" name="question" value="{{ question.id }}">
-            <div class="d-grid gap-2">
-                <button class="btn btn-light btn-lg" type="submit" name="answer" value="{{ question.filter }}">{{ question }}</button>
-            </div>
-        {% endfor %}
-    </form>
-</div>
+    <div>
+        <form method="POST">
+            {% csrf_token %}
+            {% for question in questions %}
+                <input type="hidden" name="question" value="{{ question.id }}">
+                <div class="d-grid gap-2">
+                    <button class="btn btn-light btn-lg" type="submit" name="answer"
+                            value="{{ question.filter }}">{{ question }}</button>
+                </div>
+            {% endfor %}
+        </form>
+    </div>
+    
 {% endblock %}
 
 
