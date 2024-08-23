@@ -4,13 +4,13 @@
 {% block content %}
     
 <h1 class="text-center"> This is FilmPoint!</h1>
-    <h2 class="text-center"> Let us entertain you!</h2>
+    <!-- <h2 class="text-center"> Let us entertain you!</h2> -->
 
     {% if user.is_authenticated %}
 
         <div class="centered-button-container">
         <div class="d-grid gap-2 col-6 mx-auto">
-            <button type="button" class="btn btn-custom me-2 w-200" onclick="location.href='/survey'">Start here!</button>
+           <button type="button" class="btn btn-custom me-2 w-200" onclick="location.href='/survey'">Let us entertain you!</button>
         </div>
  </div>
 
