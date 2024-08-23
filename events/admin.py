@@ -3,7 +3,7 @@ from .models import SurveyQuestion
 
 
 class SurveyQuestionAdmin(admin.ModelAdmin):
-    list_display = ('stage', 'question', 'filter')
+    list_display = ('stage', 'title', 'question', 'filter')
 
 
 admin.site.register(SurveyQuestion, SurveyQuestionAdmin)

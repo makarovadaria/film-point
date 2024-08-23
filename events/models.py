@@ -7,6 +7,7 @@ class User(AbstractUser):
     current_stage = models.IntegerField(default=1, blank=True)
 
 class SurveyQuestion(models.Model):
+    title = models.CharField(max_length=100, default="Question")
     question = models.TextField()
     filter = models.CharField(max_length=32, default='filter')
     stage = models.IntegerField(default=1)
