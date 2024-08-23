@@ -21,11 +21,13 @@ def retake_survey(request):
 
 
 def intro_survey(request):
+    question_title = None
     current_user = request.user
     user_survey_stage = current_user.current_stage
     # This line of code does this and this
     questions = SurveyQuestion.objects.filter(stage=user_survey_stage)
-    question_title = questions[0].title
+    if len(questions) > 0:
+        question_title = questions[0].title
     stage_limit = 4
     if request.method == 'POST' and user_survey_stage < stage_limit:
         submitted_answer = request.POST.get('answer')
@@ -41,7 +43,9 @@ def intro_survey(request):
         return redirect('intro_survey')
     elif user_survey_stage == stage_limit:
         return redirect('get_recommendations')
-    return render(request, 'events/movie_survey.html', {'questions': questions, 'question_title': question_title})
+    return render(request, 'events/movie_survey.html',
+                  {'questions': questions, 'question_title': question_title}
+                  )
 
 
 def index(request):
