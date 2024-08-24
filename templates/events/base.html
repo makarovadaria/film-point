@@ -203,21 +203,35 @@
 
                     {% if user.is_authenticated %}
                         <!-- Visible only when the user is authenticated (signed in) -->
-                        <a class="nav-link" href="{% url 'retake_survey' %}"></a>
-                        <form method="POST" action="{% url 'retake_survey' %}">
-                            {% csrf_token %}
-                            <input type="hidden" name="reset" value="reset">
-                            <button class="nav-link" type="submit"
-                                    style="font-family: 'Arial', sans-serif; color: #0D253F;">Retake Survey
-                            </button>
-                        </form>
+                        {% if user.current_stage != 1 %}
+                            <a class="nav-link" href="{% url 'retake_survey' %}"></a>
+                            <form method="POST" action="{% url 'retake_survey' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="reset" value="reset">
+                                <button class="nav-link" type="submit"
+                                        style="font-family: 'Arial', sans-serif; color: #0D253F;">Retake Survey
+                                </button>
+                            </form>
+                        {% endif %}
                         <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">Profile</a>
+                            <a class="nav-link" href="{% url 'profile' %}">{{ user }}'s Profile</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
+                        </li>
+
+                        {% if user.current_stage == 4 %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="{% url 'get_recommendations' %}">Recommendation</a>
+                            </li>
+                        {% endif %}
+
 
                         <li class="nav-item">
                             <a class="nav-link" href="{% url 'logout' %}">Logout</a>
                         </li>
+
 
                     {% else %}
                         <!-- Visible only when the user is not authenticated and not on the login page -->
