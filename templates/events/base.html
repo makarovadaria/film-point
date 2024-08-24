@@ -39,137 +39,80 @@
     }
 
 
-    .movie-box {
-        padding: 15px;
-        max-width: 900px;
-        margin: 80px auto;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9f9;
-    }
+    .container {
+    margin-top: 50px;
+}
 
-    .movie-content {
-        display: flex;
-        gap: 20px;
-    }
+.movie-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px; /* Space between each movie box */
+}
 
-    .movie-image {
-        width: auto;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
+.movie-box {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 15px;
+    max-width: 900px;
+    margin: 20px auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+}
 
-    .movie-details {
-        flex: 1;
-    }
+.movie-content {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
 
-    .movie-title {
-        margin-top: 0;
-        color: #333;
-        font-size: 1.5em;
-    }
+.movie-details {
+    flex: 1;
+    margin-right: 20px; /* Space between text and image */
+}
 
-    .movie-year,
-    .movie-rating,
-    .movie-genre {
-        color: #555;
-        margin-top: 5px;
-        font-size: 0.9em;
-    }
+.movie-title {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+    color: #333;
+}
 
-    .movie-description {
-        color: #555;
-        line-height: 1.6;
-        margin-top: 10px;
-    }
+.movie-year,
+.movie-rating,
+.movie-genre {
+    color: #555;
+    margin-bottom: 5px;
+    font-size: 0.9em;
+}
 
+.movie-description {
+    color: #555;
+    line-height: 1.6;
+    margin-top: 10px;
+}
 
-    .header {
-        margin: 10px 15px;
-    }
+.movie-image {
+    width: 150px; /* Adjusted width for image */
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
 
-    .custom-card {
-        background-color: rgba(255, 255, 255, 0.3);
-        border: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
+.btn-custom {
+    background-color: #0d253f;
+    color: #d2dfe5;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 20px;
+}
 
-    .logo-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .movie-container {
-        padding: 15px;
-        max-width: 900px;
-        margin: 80px auto;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9f9;
-    }
-
-    .movie-content {
-        display: flex;
-        gap: 20px;
-    }
-
-    .movie-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .movie-box {
-        background-color: #d2dfe5;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .movie-title {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-    }
-
-
-    .movie-image {
-        height: 400px;
-        width: 100%;
-        max-width: 200px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
-
-    .movie-details {
-        margin-bottom: 15px;
-    }
-
-    .movie-year,
-    .movie-rating,
-    .movie-genre {
-        margin-bottom: 5px;
-    }
-
-    .movie-description {
-        margin-top: 10px;
-        color: #555;
-        line-height: 1.6;
-    }
-
-    .btn-custom {
-        background-color: #0d253f;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn-custom:hover {
-        background-color: #d2dfe5;
-    }
+.btn-custom:hover {
+    background-color: #d2dfe5;
+    color: #0d253f;
+}
 
 </style>
 
