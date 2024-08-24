@@ -101,7 +101,7 @@ def add_to_watchlist(request):
         defaults=movie_data
     )
 
-    watchlist, created = Watchlist.objects.get_or_create(user=request.user, movie=movie)
+    Watchlist.objects.create(user=request.user, movie=movie)
     return JsonResponse({'status': 'added'})
 
 def delete_from_watchlist(request):

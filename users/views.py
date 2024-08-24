@@ -50,4 +50,5 @@ def logout_view(request):
 def profile(request):
     movie_ids_in_watchlist = Watchlist.objects.filter(user=request.user).values_list('movie_id', flat=True)
     movies_in_watchlist = Movie.objects.filter(id__in=movie_ids_in_watchlist)
-    return render(request, 'events/profile.html', {'movies': movies_in_watchlist})#
+    user = request.user
+    return render(request, 'events/profile.html', {'movies': movies_in_watchlist, 'user': user}, )#
