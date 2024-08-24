@@ -6,250 +6,81 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}FilmPoint{% endblock %}</title>
+    <link rel="stylesheet" href="../../static/film-point/styles.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
 </head>
 
-<style>
-    body {
-        background-color: #E8F2F1;
-    }
+<body >
 
+<nav class="navbar custom-navbar navbar-expand-lg px-3"> <!-- lg is large -->
 
-    h1 {
-        color: #0d253f;
-        text-align: center;
-        margin-bottom: 3rem;
-        margin-top: 2.5rem;
-    }
+    <!--d-flex is short for “display-flex” - Flexbox manages space distribution among items in a container: alignment, direction, order, and size of boxes.-->
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'profile' %}">
+        <img src="{% static 'filmpoint_logo_light.png' %}" alt="FilmPoint Logo" width="50" height="50"
+             class="d-inline-block align-text-top" style="margin-right: 10px;">
+        my FilmPoint
+    </a>
 
-    h2 {
-        color: #100031;
-        text-align: center;
-        margin-bottom: 3rem;
-        margin-top: 3rem;
-    }
+    <!-- Toggler for mobile view -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
 
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto align-items-center">
+            <!-- Aligns items to the right and centers them vertically -->
 
-    .btn-custom {
-        background-color: #3dd1e7;
-        margin-bottom: 30px;
-        margin-top: 30px;
-    }
-
-
-    .movie-box {
-        padding: 15px;
-        max-width: 900px;
-        margin: 80px auto;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9f9;
-    }
-
-    .movie-content {
-        display: flex;
-        gap: 20px;
-    }
-
-    .movie-image {
-        width: auto;
-        height: auto;
-        border-radius: 8px;
-        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    }
-
-    .movie-details {
-        flex: 1;
-    }
-
-    .movie-title {
-        margin-top: 0;
-        color: #333;
-        font-size: 1.5em;
-    }
-
-    .movie-year,
-    .movie-rating,
-    .movie-genre {
-        color: #555;
-        margin-top: 5px;
-        font-size: 0.9em;
-    }
-
-    .movie-description {
-        color: #555;
-        line-height: 1.6;
-        margin-top: 10px;
-    }
-
-
-    .header {
-        margin: 10px 15px;
-    }
-
-    .custom-card {
-        background-color: rgba(255, 255, 255, 0.3);
-        border: none;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        margin-bottom: 20px;
-    }
-
-    .logo-container {
-        position: fixed;
-        bottom: 20px;
-        right: 20px;
-    }
-
-    .movie-container {
-        padding: 15px;
-        max-width: 900px;
-        margin: 80px auto;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        background-color: #f9f9f9;
-    }
-
-    .movie-content {
-        display: flex;
-        gap: 20px;
-    }
-
-    .movie-list {
-        display: flex;
-        flex-direction: column;
-        gap: 20px;
-    }
-
-    .movie-box {
-        background-color: #d2dfe5;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-
-    .movie-title {
-        font-size: 1.5em;
-        margin-bottom: 10px;
-    }
-
-
-    .movie-image {
-        height: 400px;
-        width: 100%;
-        max-width: 200px;
-        border-radius: 8px;
-        margin-bottom: 15px;
-    }
-
-    .movie-details {
-        margin-bottom: 15px;
-    }
-
-    .movie-year,
-    .movie-rating,
-    .movie-genre {
-        margin-bottom: 5px;
-    }
-
-    .movie-description {
-        margin-top: 10px;
-        color: #555;
-        line-height: 1.6;
-    }
-
-    .btn-custom {
-        background-color: #0d253f;
-        color: #fff;
-        border: none;
-        padding: 10px 15px;
-        border-radius: 5px;
-        cursor: pointer;
-        transition: background-color 0.3s ease;
-    }
-
-    .btn-custom:hover {
-        background-color: #d2dfe5;
-    }
-
-</style>
-
-
-<body>
-
-
-<div class="container">
-    <nav class="navbar navbar-expand-lg ">
-        <div class="container-fluid d-flex align-items-center justify-content-between">
-
-            <a class="navbar-brand d-flex align-items-center" href="{% url 'profile' %}">
-                <img src="{% static 'filmpoint_logo_light.png' %}" alt="FilmPoint Logo" width="40" height="40"
-                     class="d-inline-block align-text-top" style="margin-right: 10px;">
-                FilmPoint
-            </a>
-
-
-            <!-- Toggler for mobile view -->
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                    aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-
-            <!-- Collapsible content -->
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-center">
-                    <!-- Aligns items to the right and centers them vertically -->
-
-
-
-                    {% if user.is_authenticated %}
-                        <!-- Visible only when the user is authenticated (signed in) -->
-                        {% if request.path != '/' and request.path != '/survey/' %}
-                            <a class="nav-link" href="{% url 'retake_survey' %}"></a>
-                            <form method="POST" action="{% url 'retake_survey' %}">
-                                {% csrf_token %}
-                                <input type="hidden" name="reset" value="reset">
-                                <button class="nav-link" type="submit"
-                                        style="font-family: 'Arial', sans-serif; color: #0D253F;">Retake Survey
-                                </button>
-                            </form>
-                        {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'profile' %}">{{ user }}'s Profile</a>
-                        </li>
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
-                        </li>
-
-                        {% if user.current_stage == 4 %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'get_recommendations' %}">Recommendation</a>
-                            </li>
-                        {% endif %}
-
-
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'logout' %}">Logout</a>
-                        </li>
-
-
-                    {% else %}
-                        <!-- Visible only when the user is not authenticated and not on the login page -->
-                        {% if request.resolver_match.url_name != 'login' %}
-                            <li class="nav-item">
-                                <a class="nav-link" href="{% url 'login' %}">Login</a>
-                            </li>
-                        {% endif %}
-                        <li class="nav-item">
-                            <a class="nav-link" href="{% url 'signup' %}">Register</a>
+            {% if user.is_authenticated %}
+                <!-- Visible only when the user is authenticated (signed in) -->
+                <li class="nav-item">
+                    {% if request.path != '/' and request.path != '/survey/' %}
+                        <a href="{% url 'retake_survey' %}"></a>
+                        <form method="POST" action="{% url 'retake_survey' %}">
+                            {% csrf_token %}
+                            <input type="hidden" name="reset" value="reset">
+                            <button class="nav-link" type="submit">Retake survey
+                            </button>
+                        </form>
                         </li>
                     {% endif %}
 
-                </ul>
-            </div>
-        </div>
-    </nav>
-</div>
+                {% if user.current_stage == 4 %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'get_recommendations' %}">Recommendation</a>
+                    </li>
+                {% endif %}
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'profile' %}">{{ user }}'s profile</a>
+                </li>
+
+                <li class="nav-item">
+                            <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
+                        </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                
+            {% else %}
+                <!-- Visible only when the user is not authenticated and not on the login page -->
+                {% if request.resolver_match.url_name != 'login' %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">Login</a>
+                    </li>
+                {% endif %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'signup' %}">Register</a>
+                </li>
+            {% endif %}
+
+        </ul>
+    </div>
+
+</nav>
 
 <div>
     {% if messages %}
@@ -261,24 +92,20 @@
     {% endblock %}
 </div>
 
-<div class="logo-container">
+
+<div class="TMDB-logo-container show-on-top">
     <a href="{% url 'index' %}">
-        <img src="{% static 'TMDB_logo.svg' %}" alt="Logo" width="60" height="60">
+        <img src="{% static '/film-point/TMDB_logo.svg' %}" alt="TMDB logo" width="55" height="55">
     </a>
 </div>
-
 
 <footer class="py-3 mt-auto">
     <div class="container text-center">
         <p class="mb-0">&copy; 2024 FilmPoint. All rights reserved.</p>
+        <a href="{% url 'index' %}">
+        </a>
     </div>
 </footer>
 
-<div class="logo-container">
-    <img src="{% static '/film-point/TMDB_logo.svg' %}" alt="TMDB Logo" class="tmdb-logo">
-</div>
-
 </body>
-
-
 </html>

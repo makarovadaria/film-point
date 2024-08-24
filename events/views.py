@@ -104,6 +104,7 @@ def add_to_watchlist(request):
     Watchlist.objects.create(user=request.user, movie=movie)
     return JsonResponse({'status': 'added'})
 
+
 def delete_from_watchlist(request):
     movie_id = request.POST.get('movie_id')
 
@@ -113,4 +114,4 @@ def delete_from_watchlist(request):
     watchlist_entry.delete()
     movie_ids_in_watchlist = Watchlist.objects.filter(user=request.user).values_list('movie_id', flat=True)
     movies_in_watchlist = Movie.objects.filter(id__in=movie_ids_in_watchlist)
-    return render(request, 'events/profile.html', {'movies': movies_in_watchlist})  #
+    return render(request, 'events/watchlist.html', {'movies': movies_in_watchlist})  #

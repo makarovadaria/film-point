@@ -47,13 +47,15 @@ def logout_view(request):
     messages.success(request, 'You have been logged out.')
     return redirect('index')
 
+
 def profile(request):
     user = request.user
     return render(request, 'events/profile.html', {'user': user}, )
+
 
 def watchlist(request):
     movie_ids_in_watchlist = Watchlist.objects.filter(user=request.user).values_list('movie_id', flat=True)
     movies_in_watchlist = Movie.objects.filter(id__in=movie_ids_in_watchlist)
     user = request.user
 
-    return render(request, 'events/watchlist.html', {'movies': movies_in_watchlist, 'user': user}, )#
+    return render(request, 'events/watchlist.html', {'movies': movies_in_watchlist, 'user': user}, )  #
