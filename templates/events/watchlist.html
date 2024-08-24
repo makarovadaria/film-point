@@ -7,8 +7,9 @@
     
         
 <div class="movies-list">
-    {% for movie in movies %}
-        <div class="movie-container">
+    {% if movies %}
+        {% for movie in movies %}
+            <div class="movie-container">
             <div class="movie-content">
                 <div class="image-box">
                     <img src="https://image.tmdb.org/t/p/w500{{ movie.image }}" alt="{{ movie.name }}" class="movie-image">
@@ -34,10 +35,20 @@
                     </div>
                 </div>
             </div>
+
+            </div>
+        {% endfor %}
+    {% else %}
+<div class="movie-container">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <h2 class="movie-title">Your watchlist is empty</h2>
         </div>
-    {% endfor %}
+    </div>
 </div>
 
+    {% endif %}
+</div>
 {% endblock %}
 
               
