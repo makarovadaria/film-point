@@ -16,10 +16,10 @@
 <nav class="navbar custom-navbar navbar-expand-lg px-3"> <!-- lg is large -->
 
     <!--d-flex is short for “display-flex” - Flexbox manages space distribution among items in a container: alignment, direction, order, and size of boxes.-->
-    <a class="navbar-brand d-flex align-items-center" href="{% url 'watchlist' %}">
+    <a class="navbar-brand d-flex align-items-center" href="{% url 'profile' %}">
         <img src="{% static 'filmpoint_logo_light.png' %}" alt="FilmPoint Logo" width="50" height="50"
              class="d-inline-block align-text-top" style="margin-right: 10px;">
-        my FilmPoint watchlist
+        my FilmPoint
     </a>
 
     <!-- Toggler for mobile view -->
@@ -57,9 +57,9 @@
                     <a class="nav-link" href="{% url 'profile' %}">{{ user }}'s profile</a>
                 </li>
 
-                <!--<li class="nav-item">
+                <li class="nav-item">
                             <a class="nav-link" href="{% url 'watchlist' %}">Watchlist</a>
-                        </li> -->
+                        </li>
                 
                 <li class="nav-item">
                     <a class="nav-link" href="{% url 'logout' %}">Logout</a>
