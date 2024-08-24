@@ -47,11 +47,8 @@ example for postgres
       DB_HOST='localhost'
       DB_PORT='5433'
 
-
-
-
 6. Migrate migrations files.
-   
+
          python manage.py migrate
 
 7. Create a superuser
