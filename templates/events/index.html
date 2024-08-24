@@ -2,21 +2,22 @@
 {% block title %}FilmPoint Survey{% endblock %}
 
 {% block content %}
-    
-<h1 class="text-center"> This is FilmPoint!</h1>
-    <!-- <h2 class="text-center"> Let us entertain you!</h2> -->
+
+    <h1 class="text-center"> This is FilmPoint!</h1>
 
     {% if user.is_authenticated %}
 
         <div class="centered-button-container">
-        <div class="d-grid gap-2 col-6 mx-auto">
-          <button type="button" class="btn btn-light btn-lg" onclick="location.href='/survey'">Let us entertain you!</button>
+            <div class="d-grid gap-2 col-6 mx-auto">
+                <button type="button" class="btn btn-light btn-lg" onclick="location.href='/survey'">Let us entertain
+                    you!
+                </button>
+            </div>
         </div>
- </div>
 
     {% else %}
         <div>
-        <h1 class="text-center"> To continue, please log in or register! </h1>
+            <p class="text-center"> To continue, please log in or register! </p>
         </div>
 
     {% endif %}

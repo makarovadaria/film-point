@@ -2,9 +2,9 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 
-
 class User(AbstractUser):
     current_stage = models.IntegerField(default=1, blank=True)
+
 
 class SurveyQuestion(models.Model):
     title = models.CharField(max_length=100, default="Question")
@@ -44,6 +44,7 @@ class Movie(models.Model):
     image = models.CharField(max_length=500)
     rating = models.FloatField(default=0)
     genre = models.CharField(max_length=250)
+
     # amenities = models.ManyToManyField(Amenities)
 
     def __str__(self):

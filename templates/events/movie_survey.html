@@ -4,6 +4,8 @@
 {% block content %}
 
     <div>
+    <div class="movie-container">
+        <div class="container mt-5">
         <form method="POST">
             {% csrf_token %}
             <h2>{{ question_title }}</h2>
@@ -16,7 +18,7 @@
             {% endfor %}
         </form>
     </div>
-
+    </div>
 {% endblock %}
 
 
