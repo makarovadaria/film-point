@@ -7,7 +7,7 @@ body {
   }
 
 .show-on-top {
-    z-index: 1; /* Set a higher z-index than the masked element */
+    z-index: 1; /* Set a higher z-index than the masked element - for TMDB logo */
 }
 
 h1 {
@@ -120,7 +120,7 @@ h2 {
 }
 
 footer {
-    position: sticky;
+    position: fixed;
     left: 0;
     bottom: 0;
     width: 100%;
