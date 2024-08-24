@@ -35,8 +35,8 @@ GENRE_MAP = {genre['id']: genre['name'] for genre in genres_data['genres']}
 def get_film_list_by_filter(movie_filter, request):
     genre = movie_filter[0]
     date_total = movie_filter[1]
-    date_gte = date_total.split('-')[0]
-    date_lte = date_total.split('-')[1]
+    date_gte = date_total.split('-')[0] + '-01-01'
+    date_lte = date_total.split('-')[1] + '-12-31'
     region = movie_filter[2]
 
     base_url = f"{API_URL}/discover/movie?release_date.gte={date_gte}&release_date.lte={date_lte}&with_genres={genres.get(genre)}"
