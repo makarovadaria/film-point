@@ -12,6 +12,3 @@ class RegisterForm(UserCreationForm):
         model = User
         fields = ('username', 'email', 'password1', 'password2')
         # username, password1 and password2 is built in functions
-
-
-
