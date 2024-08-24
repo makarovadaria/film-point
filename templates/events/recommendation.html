@@ -1,10 +1,10 @@
 {% extends 'events/base.html' %}
+
 {% block title %}Home{% endblock %}
 
 {% block content %}
    <br> <h1>Bravo, Movie Maestro!🍿</h1>
     <h2>Check out these awesome movie picks for tonight</h2>
-
 
     {% for movie in recommended_movies %}
         <div class="movie-container">
