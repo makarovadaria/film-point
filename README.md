@@ -25,7 +25,7 @@ user movies.
 
 5. Create .env file.
 
-example for SQL
+Example for MySQL:
 
       SECRET_KEY='django-insecure-s@xw=y+b7o@a4uk935bho9#(6k&9d96r*o^zbo9j4%abt2xhg9'
       DEBUG='True'
@@ -36,7 +36,7 @@ example for SQL
       DB_HOST='localhost'
       DB_PORT='3306'
 
-example for postgres
+Example for PostgreSQL:
 
       SECRET_KEY='django-insecure-s@xw=y+b7o@a4uk935bho9#(6k&9d96r*o^zbo9j4%abt2xhg9'
       DEBUG='True'
