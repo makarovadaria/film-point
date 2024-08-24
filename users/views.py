@@ -14,7 +14,7 @@ def index(request):
 # Create your views here.
 def register(request):
     if request.method == 'POST':
-        form = MovieForm(request.POST)
+        form = RegisterForm(request.POST)
         if form.is_valid():
             user = form.save()
             login(request, user)
