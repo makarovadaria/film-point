@@ -25,7 +25,7 @@ user movies.
 
 5. Create .env file.
 
-Example for MySQL:
+for MySQL:
 
       SECRET_KEY='django-insecure-s@xw=y+b7o@a4uk935bho9#(6k&9d96r*o^zbo9j4%abt2xhg9'
       DEBUG='True'
@@ -36,7 +36,7 @@ Example for MySQL:
       DB_HOST='localhost'
       DB_PORT='3306'
 
-Example for PostgreSQL:
+for PostgreSQL:
 
       SECRET_KEY='django-insecure-s@xw=y+b7o@a4uk935bho9#(6k&9d96r*o^zbo9j4%abt2xhg9'
       DEBUG='True'
@@ -45,18 +45,31 @@ Example for PostgreSQL:
       DB_USER='(your_username)'
       DB_PASSWORD='(your_password)'
       DB_HOST='localhost'
-      DB_PORT='5433'
+      DB_PORT='5432'
 
-6. Migrate migrations files.
+6. Make migrations and migrate migrations files
+   
+         python manage.py makemigrations
 
          python manage.py migrate
 
-7. Create a superuser
+8. Create a superuser
 
        python manage.py createsuperuser
 
-8. The project comes with the fixture file which holds pre-made data for quicker testing which can be applied.
+9. The project comes with the fixture file which holds pre-made data for quicker testing which can be applied.
 
          python manage.py loaddata fixtures.json
+
+## GIT
+
+1. Each new branch should be created from the `main` branch.
+
+2. For the branch naming, start each branch name with the prefix according to the work you intend to do in it:
+
+    - feature/
+    - bugfix/
+
+3. For the merge request, target the working branch to the `master` branch.
 
 
