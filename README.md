@@ -1,3 +1,5 @@
+## FilmPoint
+
 Filmpoint is a simple website for movie recommendation system for users.
 
 ![Filmpoint image](./Filmpoint.png)
@@ -70,6 +72,6 @@ for PostgreSQL:
     - feature/
     - bugfix/
 
-3. For the merge request, target the working branch to the `master` branch.
+3. For the merge request, target the working branch to the `main` branch.
 
 
