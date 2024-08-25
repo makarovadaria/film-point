@@ -17,7 +17,7 @@ class RetakeSurveyViewTest(TestCase):
         self.answer2 = SurveyAnswer.objects.create(user=self.user, question_id=2, answer='Answer 2')
 
     def test_retake_survey_resets_stage(self):
-        response = self.client.post(reverse('retake_survey'), {'reset': 'reset'})
+        self.client.post(reverse('retake_survey'), {'reset': 'reset'})
         self.user.refresh_from_db()
         self.assertEqual(self.user.current_stage, 1)
 
@@ -34,7 +34,6 @@ class WatchlistModelTest(TestCase):
     def setUp(self):
         self.user = User.objects.create_user(username='testuser', password='testpass')
         self.movie = Movie.objects.create(movie_id=1, name='Test Movie', description='description', year=2020,image='',rating=7.5, genre='comedy')
-
         self.watchlist = Watchlist.objects.create(user=self.user, movie=self.movie)
 
     def test_watchlist_creation(self):
