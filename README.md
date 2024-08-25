@@ -25,7 +25,7 @@ user movies.
 
 5. Create .env file.
 
-example for SQL
+for MySQL:
 
       SECRET_KEY='django-insecure-s@xw=y+b7o@a4uk935bho9#(6k&9d96r*o^zbo9j4%abt2xhg9'
       DEBUG='True'
@@ -36,7 +36,7 @@ example for SQL
       DB_HOST='localhost'
       DB_PORT='3306'
 
-example for postgres
+for PostgreSQL:
 
       SECRET_KEY='django-insecure-s@xw=y+b7o@a4uk935bho9#(6k&9d96r*o^zbo9j4%abt2xhg9'
       DEBUG='True'
@@ -45,17 +45,19 @@ example for postgres
       DB_USER='(your_username)'
       DB_PASSWORD='(your_password)'
       DB_HOST='localhost'
-      DB_PORT='5433'
+      DB_PORT='5432'
 
-6. Migrate migrations files.
+6. Make migrations and migrate migrations files
+   
+         python manage.py makemigrations
 
          python manage.py migrate
 
-7. Create a superuser
+8. Create a superuser
 
        python manage.py createsuperuser
 
-8. The project comes with the fixture file which holds pre-made data for quicker testing which can be applied.
+9. The project comes with the fixture file which holds pre-made data for quicker testing which can be applied.
 
          python manage.py loaddata fixtures.json
 
