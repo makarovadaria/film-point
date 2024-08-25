@@ -61,4 +61,15 @@ for PostgreSQL:
 
          python manage.py loaddata fixtures.json
 
+## GIT
+
+1. Each new branch should be created from the `main` branch.
+
+2. For the branch naming, start each branch name with the prefix according to the work you intend to do in it:
+
+    - feature/
+    - bugfix/
+
+3. For the merge request, target the working branch to the `master` branch.
+
 
